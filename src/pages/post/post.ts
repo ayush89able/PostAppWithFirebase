@@ -62,7 +62,7 @@ export class PostPage {
 
   getName()
   { 
-this.fireData.getuserName().then((data)=>{
+  this.fireData.getuserName().then((data)=>{
   this.NameData=data;
   console.log(this.NameData);
   this.username=this.NameData[1];

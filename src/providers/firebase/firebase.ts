@@ -92,7 +92,7 @@ export class FirebaseProvider {
   {
     return new Promise((resolve,reject)=>{
       var uid=this.global.userID;
-      var dbref=firebase.database().ref('/allPosts/'+uid)
+      var dbref=firebase.database().ref('/users/'+uid+'/Posts/')
       dbref.on('value',(posts)=>{
         var allPostsArr=_.toArray(posts.val());
         console.log('all posts on fireData',allPostsArr);

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage} from 'ionic-angular';
 import { FirebaseProvider} from '../../providers/firebase/firebase';
+import { GlobalProvider} from '../../providers/global/global';
 
 /**
  * Generated class for the AllPostsPage page.
@@ -15,31 +16,40 @@ import { FirebaseProvider} from '../../providers/firebase/firebase';
   templateUrl: 'all-posts.html',
 })
 export class AllPostsPage {
+  allPostData:any;
 
-  constructor(public fireData: FirebaseProvider) {
+
+  constructor(public fireData: FirebaseProvider,public global:GlobalProvider) {
+    this.fireData.fetchAllPosts();
+    this.getPosts();
+    
+   
+    
+  }
+
+  onClick()
+  {
+    console.log(this.global.allPosts);
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllPostsPage');
-    this.fireData.fetchAllPosts();
   }
 
-  
+  getPosts()
+  {
+      this.fireData.fetchAllPosts().then((data)=>{
+      this.allPostData=this.global.allPosts;
+      console.log(this.allPostData);
+      // console.log(this.allPostData[0].PostTitle);
+      // console.log(this.allPostData[0].PostBody);
+     
+
+
+      })
+  }  
 
 }
 
 
-// fetchAllJobs() {
-//   var uid = this.globals.userId;
-//   var companyName = this.globals.userData.typeName;
-//   return new Promise((resolve, reject) => {
-//     var dbRef = firebase.database().ref('/allJobs')
-//     dbRef.on('value', (jobs) => {
-//       var allJobsArr = _.toArray(jobs.val());
-//       console.log('all Jobs on fireData', allJobsArr);
-//       this.globals.allJobs = allJobsArr
-//       console.log("globals data", this.globals.allJobs)
-//       resolve(allJobsArr);
-//     })
-//   });
-// }

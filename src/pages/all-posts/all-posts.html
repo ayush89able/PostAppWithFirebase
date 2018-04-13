@@ -12,7 +12,17 @@
 
 </ion-header>
 
-
 <ion-content padding>
+  
+
+    <ion-card *ngFor="let post of allPostData">
+      <ion-card-header>
+        <p>title= {{post.PostTitle}}</p>
+      </ion-card-header>
+      <ion-card-content>
+        <p>body={{post.PostBody}}</p>
+      </ion-card-content>
+    </ion-card>>
+      
 
 </ion-content>
